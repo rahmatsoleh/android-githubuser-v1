@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Github Api</string>
+    <string name="searchbar_hint">Masukan username github</string>
+    <string name="username">exampleusername</string>
+
+    <string-array name="data_username">
+        <item>rahmatsoleh</item>
+        <item>RahmatSoleh03</item>
+    </string-array>
+    <string-array name="data_images">
+        <item>https://avatars.githubusercontent.com/u/65023884?v=4</item>
+        <item>https://avatars.githubusercontent.com/u/134030676?v=4</item>
+    </string-array>
+</resources>
