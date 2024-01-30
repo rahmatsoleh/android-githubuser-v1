@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubUser
 import com.example.submission1bfa.databinding.ActivityMainBinding
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
+    private lateinit var keyword: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +28,8 @@ class MainActivity : AppCompatActivity() {
                 .setOnEditorActionListener { textView, actionId, event ->
                     searchBar.setText(searchView.text)
                     searchView.hide()
-                    Toast.makeText(this@MainActivity, searchView.text, Toast.LENGTH_SHORT).show()
                     mainViewModel.getListGithubUser(searchView.text.toString())
+                    keyword = searchView.text.toString()
                     false
                 }
         }
@@ -39,9 +42,23 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
         }
+
+        mainViewModel.totalCount.observe(this) {
+            setNumFoundHeader(it)
+        }
+
+        mainViewModel.status.observe(this, Observer { status ->
+            status?.let {
+                mainViewModel.status.value = null
+                Snackbar.make(mainBinding.root, "Something wrong response data", Snackbar.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun showRecycleList(listItems: ArrayList<GithubUser>) {
+        mainBinding.rvGithub.visibility = View.VISIBLE
+        mainBinding.tvFirstStatus.visibility = View.INVISIBLE
+
         mainBinding.rvGithub.layoutManager = LinearLayoutManager(this)
         val listGithubAdapter = ListGithubAdapter(listItems)
         mainBinding.rvGithub.adapter = listGithubAdapter
@@ -59,9 +76,33 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
+            mainBinding.ivGithub.visibility = View.INVISIBLE
+            mainBinding.tvFirstStatus.visibility = View.INVISIBLE
+            mainBinding.llNotfound.visibility = View.INVISIBLE
             mainBinding.progressBar.visibility = View.VISIBLE
         } else {
             mainBinding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun setNumFoundHeader(count: Int) {
+        mainBinding.tvFirstTextHeader.visibility = View.INVISIBLE
+        mainBinding.tvNumFound.visibility = View.VISIBLE
+        mainBinding.tvFoundDesc.visibility = View.VISIBLE
+
+        mainBinding.tvNumFound.text = count.toString()
+
+        if (count < 1) {
+            mainBinding.rvGithub.visibility = View.INVISIBLE
+
+            mainBinding.ivGithub.visibility = View.VISIBLE
+            mainBinding.llNotfound.visibility = View.VISIBLE
+            mainBinding.tvNotFound.text = keyword
+        } else {
+            mainBinding.rvGithub.visibility = View.VISIBLE
+
+            mainBinding.ivGithub.visibility = View.INVISIBLE
+            mainBinding.llNotfound.visibility = View.INVISIBLE
         }
     }
 }

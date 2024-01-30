@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">Github Api</string>
-    <string name="searchbar_hint">Masukan username github</string>
-    <string name="username">exampleusername</string>
-
-    <string-array name="data_username">
-        <item>rahmatsoleh</item>
-        <item>RahmatSoleh03</item>
-    </string-array>
-    <string-array name="data_images">
-        <item>https://avatars.githubusercontent.com/u/65023884?v=4</item>
-        <item>https://avatars.githubusercontent.com/u/134030676?v=4</item>
-    </string-array>
+    <string name="searchbar_hint">Search Username</string>
+    <string name="username">Username</string>
+    <string name="type">User</string>
+    <string name="example_username">lhjglfasuyg</string>
+    <string name="first_text_status">Search the list of github users by username</string>
+    <string name="header_search_bar">List Github Users</string>
+    <string name="first_text_header">Please input username github first</string>
+    <string name="default_num">0</string>
+    <string name="username_found">github usernames found</string>
+    <string name="notfound">not found</string>
 </resources>

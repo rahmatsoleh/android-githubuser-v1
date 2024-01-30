@@ -34,11 +34,12 @@ class ListGithubAdapter(private val listGithub: ArrayList<GithubUser>) : Recycle
     override fun getItemCount(): Int = listGithub.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (login, avatar_url) = listGithub[position]
+        val (login, avatar_url, type) = listGithub[position]
         Glide.with(holder.itemView.context)
             .load(avatar_url)
             .into(holder.binding.imgItemPhoto)
         holder.binding.tvItemUsername.text = login
+        holder.binding.tvType.text = type
 
         holder.itemView.setOnClickListener{ onItemClickCallback.onItemClicked(listGithub[holder.adapterPosition])}
     }

@@ -25,6 +25,9 @@ data class ItemsItem(
 	@field:SerializedName("login")
 	val login: String,
 
+	@field:SerializedName("type")
+	val type: String,
+
 	@field:SerializedName("gravatar_id")
 	val gravatarId: String,
 
