@@ -1,5 +1,6 @@
 package com.example.submission1bfa.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -71,7 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: GithubUser) {
-        Toast.makeText(this, "Kamu memilih " + user.login, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Kamu memilih " + user.login, Toast.LENGTH_SHORT).show()
+        val detailIntent = Intent(this@MainActivity, DetailUser::class.java)
+        detailIntent.putExtra(DetailUser.EXTRA_USERNAME, user.login)
+        startActivity(detailIntent)
     }
 
     private fun showLoading(isLoading: Boolean) {
