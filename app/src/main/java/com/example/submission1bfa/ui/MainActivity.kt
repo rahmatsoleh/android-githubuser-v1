@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.submission1bfa.data.GithubUser
+import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.ActivityMainBinding
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun showRecycleList(listItems: ArrayList<GithubUser>) {
+    private fun showRecycleList(listItems: ArrayList<GithubUsers>) {
         mainBinding.rvGithub.visibility = View.VISIBLE
         mainBinding.tvFirstStatus.visibility = View.INVISIBLE
 
@@ -65,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         mainBinding.rvGithub.adapter = listGithubAdapter
 
         listGithubAdapter.setOnItemClickCallback(object: ListGithubAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: GithubUser) {
+            override fun onItemClicked(data: GithubUsers) {
                 showSelectedUser(data)
             }
         })
     }
 
-    private fun showSelectedUser(user: GithubUser) {
+    private fun showSelectedUser(user: GithubUsers) {
 //        Toast.makeText(this, "Kamu memilih " + user.login, Toast.LENGTH_SHORT).show()
         val detailIntent = Intent(this@MainActivity, DetailUser::class.java)
         detailIntent.putExtra(DetailUser.EXTRA_USERNAME, user.login)

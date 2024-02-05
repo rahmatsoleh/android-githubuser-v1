@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Github Api</string>
     <string name="searchbar_hint">Search Username</string>
-    <string name="username">Username</string>
+    <string name="username">Loading...</string>
     <string name="type">User</string>
     <string name="example_username">lhjglfasuyg</string>
     <string name="first_text_status">Search the list of github users by username</string>
@@ -12,12 +12,12 @@
     <string name="notfound">not found</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="number">199</string>
+    <string name="number">0</string>
     <string name="repos">Repos</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
-    <string name="description">I\'m a fullstack programmer web and mobile enthusiast</string>
-    <string name="company">PT. Atlantic Ocean Paint</string>
-    <string name="place">Jombang, East Java</string>
+    <string name="description">Loading...</string>
+    <string name="company">Loading...</string>
+    <string name="place">Loading...</string>
     <string name="visit_github">Visit Github User</string>
 </resources>

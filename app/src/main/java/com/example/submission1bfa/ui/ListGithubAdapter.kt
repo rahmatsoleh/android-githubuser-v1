@@ -1,21 +1,18 @@
 package com.example.submission1bfa.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.submission1bfa.R
-import com.example.submission1bfa.data.GithubUser
+import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.ItemRowGithubBinding
 
-class ListGithubAdapter(private val listGithub: ArrayList<GithubUser>) : RecyclerView.Adapter<ListGithubAdapter.ListViewHolder>() {
+class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) : RecyclerView.Adapter<ListGithubAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: GithubUser)
+        fun onItemClicked(data: GithubUsers)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -45,12 +42,12 @@ class ListGithubAdapter(private val listGithub: ArrayList<GithubUser>) : Recycle
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GithubUser>() {
-            override fun areItemsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GithubUsers>() {
+            override fun areItemsTheSame(oldItem: GithubUsers, newItem: GithubUsers): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
+            override fun areContentsTheSame(oldItem: GithubUsers, newItem: GithubUsers): Boolean {
                 return oldItem == newItem
             }
         }
