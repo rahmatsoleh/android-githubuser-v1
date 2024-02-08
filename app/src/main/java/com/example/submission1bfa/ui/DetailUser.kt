@@ -46,6 +46,7 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
 
 //        ViewPager2
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.login = loginkeyword
         val viewPager: ViewPager2 = detailUserBinding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = detailUserBinding.tabs
