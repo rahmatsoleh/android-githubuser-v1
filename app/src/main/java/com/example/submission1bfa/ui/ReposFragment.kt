@@ -1,5 +1,7 @@
 package com.example.submission1bfa.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -59,7 +61,8 @@ class ReposFragment : Fragment() {
 
         listReposAdapter.setOnItemClickCallback(object : GithubReposAdapter.OnItemClickCallback {
             override fun onItemClicked(data: GithubRepos) {
-                Toast.makeText(this@ReposFragment.context, "${data.name.toString()} is Clicked", Toast.LENGTH_SHORT).show()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(data.html_url))
+                startActivity(browserIntent)
             }
         })
     }

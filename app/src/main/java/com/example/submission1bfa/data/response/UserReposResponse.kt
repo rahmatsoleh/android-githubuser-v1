@@ -2,26 +2,20 @@ package com.example.submission1bfa.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ListReposResponse(
-
-	@field:SerializedName("ListReposResponse")
-	val listReposResponse: List<ListReposResponseItem>
-)
-
-data class ListReposResponseItem(
+data class UserReposResponse(
 
 	@field:SerializedName("forks")
-	val forks: Int,
+	val forks: Int? = null,
 
 	@field:SerializedName("stargazers_count")
-	val stargazersCount: Int,
+	val stargazersCount: Int? = null,
 
 	@field:SerializedName("html_url")
-	val htmlUrl: String,
+	val htmlUrl: String? = null,
 
 	@field:SerializedName("name")
-	val name: String,
+	val name: String? = null,
 
 	@field:SerializedName("description")
-	val description: String
+	val description: String? = null
 )

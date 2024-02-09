@@ -2,7 +2,7 @@ package com.example.submission1bfa.data.retrofit
 
 import com.example.submission1bfa.data.response.DetailUserResponse
 import com.example.submission1bfa.data.response.GithubUserResponse
-import com.example.submission1bfa.data.response.ListReposResponse
+import com.example.submission1bfa.data.response.UserReposResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -22,5 +22,5 @@ interface ApiServiceList {
     @GET("users/{login}/repos")
     fun getReposUser(
         @Path("login") login: String
-    ): Call<ArrayList<ListReposResponse>>
+    ): Call<ArrayList<UserReposResponse>>
 }

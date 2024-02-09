@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.submission1bfa.data.GithubRepos
-import com.example.submission1bfa.data.response.ListReposResponse
+import com.example.submission1bfa.data.response.UserReposResponse
 import com.example.submission1bfa.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,42 +29,28 @@ class ReposViewModel: ViewModel() {
         _isLoading.value = true
         val listRepositoryGithub = ArrayList<GithubRepos>()
         val client = ApiConfig.getApiService().getReposUser(login)
-        client.enqueue(object: Callback<ArrayList<ListReposResponse>> {
-//            override fun onResponse(
-//                call: Call<List<ListReposResponse>>,
-//                response: Response<ListReposResponse>
-//            ) {
-//
-//            }
+        client.enqueue(object: Callback<ArrayList<UserReposResponse>> {
 
-            override fun onFailure(call: Call<ArrayList<ListReposResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<UserReposResponse>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailureCuy: ${t.message}")
                 status.value = true
             }
 
             override fun onResponse(
-                call: Call<ArrayList<ListReposResponse>>,
-                response: Response<ArrayList<ListReposResponse>>
+                call: Call<ArrayList<UserReposResponse>>,
+                response: Response<ArrayList<UserReposResponse>>
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    if (responseBody != null) {
-                        Log.d(TAG, "SIZE: ${responseBody.size.toString()}")
-                        Log.d(TAG, "DATA[0]: ${responseBody[0]}") // Hasilnya
-                    }
 
-//                    if (responseBody != null) {
-//                        val reposItems = responseBody.listReposResponse
-//
-//                        if (reposItems != null) {
-//                            for (i in reposItems.indices) {
-//                                val reposUser = GithubRepos(reposItems[i]?.name.toString(), reposItems[i]?.htmlUrl.toString(), reposItems[i]?.description.toString(),
-//                                    reposItems[i]?.forks?.toInt() ?: 0, reposItems[i]?.stargazersCount?.toInt() ?: 0)
-//                                listRepositoryGithub.add(reposUser)
-//                            }
-//                        }
-//                    }
+                    if (responseBody != null) {
+                        for (i in responseBody.indices) {
+                            val reposUser = GithubRepos(responseBody[i]?.name.toString(), responseBody[i]?.description.toString(),
+                                responseBody[i]?.forks?.toInt() ?: 0, responseBody[i]?.stargazersCount?.toInt() ?: 0, responseBody[i]?.htmlUrl.toString())
+                            listRepositoryGithub.add(reposUser)
+                        }
+                    }
                     _isLoading.value = false
                     _reposUsers.value = listRepositoryGithub
                 } else {

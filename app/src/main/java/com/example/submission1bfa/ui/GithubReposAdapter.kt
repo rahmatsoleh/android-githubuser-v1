@@ -33,7 +33,7 @@ class GithubReposAdapter(private val githubRepos: ArrayList<GithubRepos>) : Recy
         holder.binding.tvReposName.text = name
         holder.binding.tvStar.text = stargazers_count.toString()
         holder.binding.tvCommit.text = forks.toString()
-        holder.binding.tvDescription.text = description
+        holder.binding.tvDescription.text = if (description != "null") description else "Nothing description"
 
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(githubRepos[holder.adapterPosition]) }
     }
