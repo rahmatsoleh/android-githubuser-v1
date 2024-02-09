@@ -73,6 +73,13 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
             showLoading(it)
         }
 
+        detailUserViewModel.status.observe(this) {status ->
+            status?.let {
+                detailUserViewModel.status.value = null
+                Snackbar.make(detailUserBinding.root, "Something wrong get detail user $nameUser", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onClick(v: View?) {

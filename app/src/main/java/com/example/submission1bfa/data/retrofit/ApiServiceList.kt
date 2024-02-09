@@ -1,5 +1,6 @@
 package com.example.submission1bfa.data.retrofit
 
+import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.data.response.DetailUserResponse
 import com.example.submission1bfa.data.response.GithubUserResponse
 import com.example.submission1bfa.data.response.UserReposResponse
@@ -23,4 +24,14 @@ interface ApiServiceList {
     fun getReposUser(
         @Path("login") login: String
     ): Call<ArrayList<UserReposResponse>>
+
+    @GET("users/{login}/followers")
+    fun getFollowerUser(
+        @Path("login") login: String
+    ): Call<ArrayList<GithubUsers>>
+
+    @GET("users/{login}/following")
+    fun getFollowingUser(
+        @Path("login") login: String
+    ): Call<ArrayList<GithubUsers>>
 }
