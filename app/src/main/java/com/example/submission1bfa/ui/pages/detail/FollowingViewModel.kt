@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.pages.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData

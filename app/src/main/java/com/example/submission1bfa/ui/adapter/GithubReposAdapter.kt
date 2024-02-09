@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,12 +23,12 @@ class GithubReposAdapter(private val githubRepos: ArrayList<GithubRepos>) : Recy
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): GithubReposAdapter.ListViewHolder {
+    ): ListViewHolder {
         val binding = ItemRowReposBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: GithubReposAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (name, description, forks, stargazers_count) = githubRepos[position]
         holder.binding.tvReposName.text = name
         holder.binding.tvStar.text = stargazers_count.toString()

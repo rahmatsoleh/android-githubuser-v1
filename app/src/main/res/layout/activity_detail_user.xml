@@ -8,7 +8,7 @@
     android:isScrollContainer="true"
     android:measureAllChildren="true"
     android:orientation="vertical"
-    tools:context=".ui.DetailUser">
+    tools:context=".ui.pages.detail.DetailUser">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

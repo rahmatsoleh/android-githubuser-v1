@@ -1,22 +1,18 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.pages.detail
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.submission1bfa.R
-import com.example.submission1bfa.data.DetailUser
-import com.example.submission1bfa.data.GithubRepos
 import com.example.submission1bfa.data.response.DetailUserResponse
 import com.example.submission1bfa.databinding.ActivityDetailUserBinding
+import com.example.submission1bfa.ui.adapter.SectionsPagerAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -105,6 +101,18 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setDataDetailUser(user: DetailUserResponse) {
+        if (user.bio == null) {
+            detailUserBinding.tvDescription.visibility = View.INVISIBLE
+        }
+
+        if (user.company == null) {
+            detailUserBinding.tvCompany.visibility = View.INVISIBLE
+        }
+
+        if (user.location == null) {
+            detailUserBinding.tvLocation.visibility = View.INVISIBLE
+        }
+
         detailUserBinding.tvRepos.text = user.publicRepos.toString()
         detailUserBinding.tvFollower.text = user.followers.toString()
         detailUserBinding.tvFollowing.text = user.following.toString()

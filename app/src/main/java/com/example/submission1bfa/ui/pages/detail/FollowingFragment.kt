@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.pages.detail
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubUsers
-import com.example.submission1bfa.databinding.FragmentFollowerBinding
 import com.example.submission1bfa.databinding.FragmentFollowingBinding
+import com.example.submission1bfa.ui.adapter.ListGithubAdapter
 
 class FollowingFragment : Fragment() {
     private lateinit var followingBinding: FragmentFollowingBinding

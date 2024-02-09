@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.pages.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,8 @@ import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.ActivityMainBinding
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.submission1bfa.ui.pages.detail.DetailUser
+import com.example.submission1bfa.ui.adapter.ListGithubAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {

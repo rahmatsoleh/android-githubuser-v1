@@ -1,9 +1,12 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.adapter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.submission1bfa.ui.pages.detail.FollowerFragment
+import com.example.submission1bfa.ui.pages.detail.FollowingFragment
+import com.example.submission1bfa.ui.pages.detail.ReposFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
 

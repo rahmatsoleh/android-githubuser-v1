@@ -1,12 +1,10 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.pages.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.data.response.DetailUserResponse
-import com.example.submission1bfa.data.response.GithubUserResponse
 import com.example.submission1bfa.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,14 +41,14 @@ class DetaiUserViewModel: ViewModel() {
                     }
                 } else {
                     _isLoading.value = false
-                    Log.e(DetaiUserViewModel.TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                     status.value = true
                 }
             }
 
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(DetaiUserViewModel.TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure: ${t.message}")
                 status.value = true
             }
         } )

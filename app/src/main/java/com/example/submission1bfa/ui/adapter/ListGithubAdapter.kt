@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui
+package com.example.submission1bfa.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
