@@ -28,7 +28,7 @@ class ApiConfig {
                 .addInterceptor(authenticationHeader)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl(BuildConfig.BASE_URL) // BuildConfig.SERVER_URL belum berhasil
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

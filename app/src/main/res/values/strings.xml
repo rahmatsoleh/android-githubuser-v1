@@ -2,6 +2,7 @@
     <string name="app_name">Github Api</string>
     <string name="searchbar_hint">Search Username</string>
     <string name="username">Loading...</string>
+    <string name="username_text">Username</string>
     <string name="type">User</string>
     <string name="example_username">lhjglfasuyg</string>
     <string name="first_text_status">Search the list of github users by username</string>

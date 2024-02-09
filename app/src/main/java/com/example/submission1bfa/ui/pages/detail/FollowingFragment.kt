@@ -26,7 +26,7 @@ class FollowingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         followingBinding = FragmentFollowingBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+
         return followingBinding.root
     }
 

@@ -39,6 +39,7 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
         detailUserBinding = ActivityDetailUserBinding.inflate(layoutInflater)
         setContentView(detailUserBinding.root)
 
+
         val username = intent.getStringExtra(EXTRA_USERNAME)
         loginkeyword = username.toString()
 
@@ -46,7 +47,6 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
         detailUserBinding.btnShare.setOnClickListener(this)
         detailUserBinding.btnOpenUser.setOnClickListener(this)
 
-//        ViewPager2
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         sectionsPagerAdapter.login = loginkeyword
         val viewPager: ViewPager2 = detailUserBinding.viewPager
@@ -63,10 +63,6 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
             setDataDetailUser(detailUser)
             htmlurl = detailUser.htmlUrl.toString()
             nameUser = detailUser.name.toString()
-        }
-
-        detailUserViewModel.isLoading.observe(this) {
-            showLoading(it)
         }
 
         detailUserViewModel.status.observe(this) {status ->
@@ -125,13 +121,5 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
         Glide.with(this@DetailUser.applicationContext)
             .load(user.avatarUrl.toString())
             .into(detailUserBinding.ivProfile)
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        if(isLoading) {
-            detailUserBinding.progressBar.visibility = View.VISIBLE
-        } else {
-            detailUserBinding.progressBar.visibility = View.GONE
-        }
     }
 }

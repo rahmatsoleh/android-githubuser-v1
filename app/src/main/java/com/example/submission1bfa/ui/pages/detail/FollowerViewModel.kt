@@ -37,7 +37,6 @@ class FollowerViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     status.value = false
                     val responseBody = response.body()
-                    Log.d(TAG, "Data Response Body Follower : ${responseBody}")
 
                     if (responseBody != null) {
                         for (i in responseBody.indices) {

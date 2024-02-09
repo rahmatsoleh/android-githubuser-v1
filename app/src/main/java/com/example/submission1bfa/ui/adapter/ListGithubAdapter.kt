@@ -22,8 +22,6 @@ class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) : Recycl
     class ListViewHolder(var binding: ItemRowGithubBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-//        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_github, parent, false)
-//        return ListViewHolder(view)
         val binding = ItemRowGithubBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
