@@ -1,6 +1,8 @@
 package com.example.submission1bfa.data.retrofit
 
-import de.hdodenhof.circleimageview.BuildConfig
+
+import com.example.submission1bfa.BuildConfig
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,11 +16,19 @@ class ApiConfig {
             } else {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
             }
+            val authenticationHeader = Interceptor { chain->
+                val req = chain.request()
+                val requestHeaders = req.newBuilder()
+                    .addHeader("Authorization", "token ${BuildConfig.TOKEN}")
+                    .build()
+                chain.proceed(requestHeaders)
+            }
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(authenticationHeader)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/") // BuildConfig.SERVER_URL belum berhasil
+                .baseUrl(BuildConfig.BASE_URL) // BuildConfig.SERVER_URL belum berhasil
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
