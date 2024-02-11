@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetaiUserViewModel: ViewModel() {
+class DetailUserViewModel : ViewModel() {
     companion object {
         private const val TAG = "DetailUserViewModel"
     }
@@ -46,7 +46,7 @@ class DetaiUserViewModel: ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
                 status.value = true
             }
-        } )
+        })
 
     }
 }

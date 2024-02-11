@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.following
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -36,15 +36,19 @@ class FollowingViewModel : ViewModel() {
                     val responseBody = response.body()
 
                     if (responseBody != null) {
-                        for(i in responseBody.indices) {
-                            val user = GithubUsers(responseBody[i]?.login.toString(), responseBody[i]?.avatar_url.toString(), responseBody[i].type.toString())
+                        for (i in responseBody.indices) {
+                            val user = GithubUsers(
+                                responseBody[i].login,
+                                responseBody[i].avatar_url,
+                                responseBody[i].type
+                            )
                             listDataFollowing.add(user)
                         }
 
                         _followingUsers.value = listDataFollowing
                     }
                 } else {
-                    Log.e(TAG, "on is not successfull: $response")
+                    Log.e(TAG, "on is not successful: $response")
                 }
                 _isLoading.value = false
             }

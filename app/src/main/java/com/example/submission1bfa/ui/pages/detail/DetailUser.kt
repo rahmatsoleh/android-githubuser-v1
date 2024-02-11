@@ -2,11 +2,11 @@ package com.example.submission1bfa.ui.pages.detail
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.submission1bfa.R
@@ -18,8 +18,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUser : AppCompatActivity(), View.OnClickListener {
-    lateinit var detailUserBinding: ActivityDetailUserBinding
-    private val detailUserViewModel by viewModels<DetaiUserViewModel>()
+    private lateinit var detailUserBinding: ActivityDetailUserBinding
+    private val detailUserViewModel by viewModels<DetailUserViewModel>()
     private lateinit var loginkeyword: String
     private lateinit var htmlurl: String
     private lateinit var nameUser: String
@@ -34,6 +34,7 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
 
         const val EXTRA_USERNAME = "extra_username"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detailUserBinding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -59,23 +60,27 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
 
         detailUserViewModel.getDetailGithubUser(loginkeyword)
 
-        detailUserViewModel.detailUser.observe(this){ detailUser ->
+        detailUserViewModel.detailUser.observe(this) { detailUser ->
             setDataDetailUser(detailUser)
             htmlurl = detailUser.htmlUrl.toString()
             nameUser = detailUser.name.toString()
         }
 
-        detailUserViewModel.status.observe(this) {status ->
+        detailUserViewModel.status.observe(this) { status ->
             status?.let {
                 detailUserViewModel.status.value = null
-                Snackbar.make(detailUserBinding.root, "Something wrong get detail user $nameUser", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    detailUserBinding.root,
+                    "Something wrong get detail user $nameUser",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
         }
 
     }
 
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
             R.id.btn_back -> {
                 finish()
             }

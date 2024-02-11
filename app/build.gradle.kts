@@ -11,13 +11,13 @@ android {
     defaultConfig {
         applicationId = "com.example.submission1bfa"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
-        buildConfigField("String", "TOKEN", "\"token_here\"")
+        buildConfigField("String", "TOKEN", "\"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\"")
     }
 
     buildTypes {
@@ -46,7 +46,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")

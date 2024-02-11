@@ -1,24 +1,23 @@
 <resources>
     <string name="app_name">Github Api</string>
     <string name="searchbar_hint">Search Username</string>
-    <string name="username">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="username_text">Username</string>
     <string name="type">User</string>
-    <string name="example_username">lhjglfasuyg</string>
+    <string name="example_username">example username</string>
     <string name="first_text_status">Search the list of github users by username</string>
     <string name="header_search_bar">List Github Users</string>
     <string name="first_text_header">Please input username github first</string>
     <string name="default_num">0</string>
     <string name="username_found">github usernames found</string>
     <string name="notfound">not found</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="number">0</string>
     <string name="repos">Repos</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
-    <string name="description">Loading...</string>
-    <string name="company">Loading...</string>
-    <string name="place">Loading...</string>
     <string name="visit_github">Visit Github User</string>
+    <string name="share_account">Share account github</string>
+    <string name="tab_menu">Tab Menu</string>
+    <string name="btn_back">Button Back</string>
+    <string name="img_github">Logo github</string>
 </resources>

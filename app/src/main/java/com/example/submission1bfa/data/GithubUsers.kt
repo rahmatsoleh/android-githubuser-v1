@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATED_ANNOTATION")
+
 package com.example.submission1bfa.data
 
 import android.os.Parcelable

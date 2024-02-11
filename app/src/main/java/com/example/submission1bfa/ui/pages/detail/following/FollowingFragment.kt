@@ -1,16 +1,17 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.following
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.FragmentFollowingBinding
 import com.example.submission1bfa.ui.adapter.ListGithubAdapter
+import com.example.submission1bfa.ui.pages.detail.DetailUser
 
 class FollowingFragment : Fragment() {
     private lateinit var followingBinding: FragmentFollowingBinding
@@ -18,13 +19,13 @@ class FollowingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FollowingViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FollowingViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         followingBinding = FragmentFollowingBinding.inflate(inflater, container, false)
 
         return followingBinding.root
@@ -37,24 +38,24 @@ class FollowingFragment : Fragment() {
         followingBinding.rvRepos.setHasFixedSize(true)
         viewModel.getDataFollowing(login.toString())
 
-        viewModel.followingUsers.observe(viewLifecycleOwner){ users ->
+        viewModel.followingUsers.observe(viewLifecycleOwner) { users ->
             generateListAdapter(users)
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner){ it->
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
 
     }
 
-    fun generateListAdapter(user: ArrayList<GithubUsers>) {
+    private fun generateListAdapter(user: ArrayList<GithubUsers>) {
         followingBinding.rvRepos.visibility = View.VISIBLE
 
         val listFollowingAdapter = ListGithubAdapter(user)
         followingBinding.rvRepos.layoutManager = LinearLayoutManager(this@FollowingFragment.context)
         followingBinding.rvRepos.adapter = listFollowingAdapter
 
-        listFollowingAdapter.setOnItemClickCallback(object: ListGithubAdapter.OnItemClickCallback{
+        listFollowingAdapter.setOnItemClickCallback(object : ListGithubAdapter.OnItemClickCallback {
             override fun onItemClicked(data: GithubUsers) {
                 val intent = Intent(this@FollowingFragment.context, DetailUser::class.java)
                 intent.putExtra(DetailUser.EXTRA_USERNAME, data.login)
@@ -63,7 +64,7 @@ class FollowingFragment : Fragment() {
         })
     }
 
-    fun showLoading(load: Boolean) {
+    private fun showLoading(load: Boolean) {
         if (load) {
             followingBinding.progressBar.visibility = View.VISIBLE
         } else {
@@ -73,6 +74,5 @@ class FollowingFragment : Fragment() {
 
     companion object {
         const val ARG_LOGIN = "login_name"
-        private const val TAG = "FollowingFragment"
     }
 }

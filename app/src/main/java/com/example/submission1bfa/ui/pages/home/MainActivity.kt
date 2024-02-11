@@ -1,16 +1,15 @@
-package com.example.submission1bfa.ui.pages.main
+package com.example.submission1bfa.ui.pages.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.ActivityMainBinding
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import com.example.submission1bfa.ui.pages.detail.DetailUser
 import com.example.submission1bfa.ui.adapter.ListGithubAdapter
+import com.example.submission1bfa.ui.pages.detail.DetailUser
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             searchView.setupWithSearchBar(searchBar)
             searchView
                 .editText
-                .setOnEditorActionListener { textView, actionId, event ->
+                .setOnEditorActionListener { _, _, _ ->
                     searchBar.setText(searchView.text)
                     searchView.hide()
                     mainViewModel.getListGithubUser(searchView.text.toString())
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainBinding.rvGithub.setHasFixedSize(true)
-        mainViewModel.githubUsers.observe(this) { githubUsers->
+        mainViewModel.githubUsers.observe(this) { githubUsers ->
             showRecycleList(githubUsers)
         }
 
@@ -49,12 +48,16 @@ class MainActivity : AppCompatActivity() {
             setNumFoundHeader(it)
         }
 
-        mainViewModel.status.observe(this, Observer { status ->
+        mainViewModel.status.observe(this) { status ->
             status?.let {
                 mainViewModel.status.value = null
-                Snackbar.make(mainBinding.root, "Something wrong response data", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    mainBinding.root,
+                    "Something wrong response data",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
-        })
+        }
     }
 
     private fun showRecycleList(listItems: ArrayList<GithubUsers>) {
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val listGithubAdapter = ListGithubAdapter(listItems)
         mainBinding.rvGithub.adapter = listGithubAdapter
 
-        listGithubAdapter.setOnItemClickCallback(object: ListGithubAdapter.OnItemClickCallback {
+        listGithubAdapter.setOnItemClickCallback(object : ListGithubAdapter.OnItemClickCallback {
             override fun onItemClicked(data: GithubUsers) {
                 showSelectedUser(data)
             }

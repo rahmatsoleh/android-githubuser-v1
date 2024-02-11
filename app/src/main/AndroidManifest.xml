@@ -18,7 +18,7 @@
             android:name=".ui.pages.detail.DetailUser"
             android:exported="false" />
         <activity
-            android:name=".ui.pages.main.MainActivity"
+            android:name=".ui.pages.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

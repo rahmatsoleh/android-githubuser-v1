@@ -1,13 +1,13 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.repository
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubRepos
@@ -27,7 +27,7 @@ class ReposFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         reposBinding = FragmentReposBinding.inflate(inflater, container, false)
         return reposBinding.root
     }
@@ -38,12 +38,12 @@ class ReposFragment : Fragment() {
 
         reposBinding.rvRepos.setHasFixedSize(true)
         viewModel.getListRepository(login.toString())
-        viewModel.reposUsers.observe(viewLifecycleOwner){ reposUser ->
+        viewModel.reposUsers.observe(viewLifecycleOwner) { reposUser ->
             generateRecyclerView(reposUser)
             Log.d("Data ReposUser", reposUser.toString())
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner){ isLoading->
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             showLoading(isLoading)
         }
     }

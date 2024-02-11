@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ReposViewModel: ViewModel() {
+class ReposViewModel : ViewModel() {
 
     companion object {
         private const val TAG = "ReposViewModel"
@@ -20,7 +20,7 @@ class ReposViewModel: ViewModel() {
     private val _reposUsers = MutableLiveData<ArrayList<GithubRepos>>()
     val reposUsers: LiveData<ArrayList<GithubRepos>> = _reposUsers
 
-    private  val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     var status = MutableLiveData<Boolean?>()
@@ -29,7 +29,7 @@ class ReposViewModel: ViewModel() {
         _isLoading.value = true
         val listRepositoryGithub = ArrayList<GithubRepos>()
         val client = ApiConfig.getApiService().getReposUser(login)
-        client.enqueue(object: Callback<ArrayList<UserReposResponse>> {
+        client.enqueue(object : Callback<ArrayList<UserReposResponse>> {
 
             override fun onFailure(call: Call<ArrayList<UserReposResponse>>, t: Throwable) {
                 _isLoading.value = false
@@ -46,8 +46,13 @@ class ReposViewModel: ViewModel() {
 
                     if (responseBody != null) {
                         for (i in responseBody.indices) {
-                            val reposUser = GithubRepos(responseBody[i]?.name.toString(), responseBody[i]?.description.toString(),
-                                responseBody[i]?.forks?.toInt() ?: 0, responseBody[i]?.stargazersCount?.toInt() ?: 0, responseBody[i]?.htmlUrl.toString())
+                            val reposUser = GithubRepos(
+                                responseBody[i].name.toString(),
+                                responseBody[i].description.toString(),
+                                responseBody[i].forks?.toInt() ?: 0,
+                                responseBody[i].stargazersCount?.toInt() ?: 0,
+                                responseBody[i].htmlUrl.toString()
+                            )
                             listRepositoryGithub.add(reposUser)
                         }
                     }

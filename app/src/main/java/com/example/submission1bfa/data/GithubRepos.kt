@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATED_ANNOTATION")
+
 package com.example.submission1bfa.data
 
 import android.os.Parcelable
@@ -10,4 +12,4 @@ data class GithubRepos(
     val forks: Int,
     val stargazers_count: Int,
     val html_url: String
-): Parcelable
+) : Parcelable

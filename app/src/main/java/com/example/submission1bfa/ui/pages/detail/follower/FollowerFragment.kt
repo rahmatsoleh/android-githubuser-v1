@@ -1,30 +1,31 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.follower
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.FragmentFollowerBinding
 import com.example.submission1bfa.ui.adapter.ListGithubAdapter
+import com.example.submission1bfa.ui.pages.detail.DetailUser
 
 class FollowerFragment : Fragment() {
     private lateinit var followerBinding: FragmentFollowerBinding
     private lateinit var viewModel: FollowerViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FollowerViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FollowerViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        followerBinding = FragmentFollowerBinding.inflate(inflater,container, false)
+    ): View {
+        followerBinding = FragmentFollowerBinding.inflate(inflater, container, false)
         return followerBinding.root
     }
 
@@ -39,13 +40,13 @@ class FollowerFragment : Fragment() {
             generateAdapterFollower(followerUser)
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { it ->
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
 
     }
 
-    fun generateAdapterFollower(user: ArrayList<GithubUsers>) {
+    private fun generateAdapterFollower(user: ArrayList<GithubUsers>) {
         followerBinding.rvRepos.visibility = View.VISIBLE
 
         followerBinding.rvRepos.layoutManager = LinearLayoutManager(this@FollowerFragment.context)
@@ -61,7 +62,7 @@ class FollowerFragment : Fragment() {
         })
     }
 
-    fun showLoading(load: Boolean) {
+    private fun showLoading(load: Boolean) {
         if (load) {
             followerBinding.progressBar.visibility = View.VISIBLE
         } else {
@@ -72,6 +73,5 @@ class FollowerFragment : Fragment() {
 
     companion object {
         const val ARG_LOGIN = "login_name"
-        private const val TAG = "FollowerFragment"
     }
 }

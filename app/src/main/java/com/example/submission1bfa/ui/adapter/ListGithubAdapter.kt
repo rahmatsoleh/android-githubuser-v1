@@ -2,13 +2,13 @@ package com.example.submission1bfa.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.submission1bfa.data.GithubUsers
 import com.example.submission1bfa.databinding.ItemRowGithubBinding
 
-class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) : RecyclerView.Adapter<ListGithubAdapter.ListViewHolder>() {
+class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) :
+    RecyclerView.Adapter<ListGithubAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
@@ -22,7 +22,8 @@ class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) : Recycl
     class ListViewHolder(var binding: ItemRowGithubBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemRowGithubBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRowGithubBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
@@ -36,19 +37,7 @@ class ListGithubAdapter(private val listGithub: ArrayList<GithubUsers>) : Recycl
         holder.binding.tvItemUsername.text = login
         holder.binding.tvType.text = type
 
-        holder.itemView.setOnClickListener{ onItemClickCallback.onItemClicked(listGithub[holder.adapterPosition])}
-    }
-
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GithubUsers>() {
-            override fun areItemsTheSame(oldItem: GithubUsers, newItem: GithubUsers): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: GithubUsers, newItem: GithubUsers): Boolean {
-                return oldItem == newItem
-            }
-        }
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listGithub[holder.adapterPosition]) }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui.pages.main
+package com.example.submission1bfa.ui.pages.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     companion object {
         private const val TAG = "MainViewModel"
     }
@@ -43,7 +43,11 @@ class MainViewModel: ViewModel() {
                         val userItems = responseBody.items
 
                         for (i in userItems.indices) {
-                            val githubUsers = GithubUsers(userItems[i].login, userItems[i].avatarUrl, userItems[i].type)
+                            val githubUsers = GithubUsers(
+                                userItems[i].login,
+                                userItems[i].avatarUrl,
+                                userItems[i].type
+                            )
                             listGithubUsers.add(githubUsers)
                         }
 
@@ -63,7 +67,7 @@ class MainViewModel: ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
                 status.value = true
             }
-        } )
+        })
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.submission1bfa.ui.pages.detail
+package com.example.submission1bfa.ui.pages.detail.follower
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,9 +10,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowerViewModel: ViewModel() {
+class FollowerViewModel : ViewModel() {
     companion object {
-       private  const val TAG = "FollowerViewModel"
+        private const val TAG = "FollowerViewModel"
     }
 
     private val _followerUser = MutableLiveData<ArrayList<GithubUsers>>()
@@ -28,7 +28,7 @@ class FollowerViewModel: ViewModel() {
         val listFollowerUser = ArrayList<GithubUsers>()
         val client = ApiConfig.getApiService().getFollowerUser(login)
 
-        client.enqueue(object: Callback<ArrayList<GithubUsers>> {
+        client.enqueue(object : Callback<ArrayList<GithubUsers>> {
             override fun onResponse(
                 call: Call<ArrayList<GithubUsers>>,
                 response: Response<ArrayList<GithubUsers>>
@@ -40,7 +40,11 @@ class FollowerViewModel: ViewModel() {
 
                     if (responseBody != null) {
                         for (i in responseBody.indices) {
-                            val followerUser = GithubUsers(responseBody[i]?.login.toString(), responseBody[i]?.avatar_url.toString(), responseBody[i]?.type.toString())
+                            val followerUser = GithubUsers(
+                                responseBody[i].login,
+                                responseBody[i].avatar_url,
+                                responseBody[i].type
+                            )
                             listFollowerUser.add(followerUser)
                         }
 
