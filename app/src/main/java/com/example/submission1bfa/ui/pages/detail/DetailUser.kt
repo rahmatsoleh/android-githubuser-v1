@@ -75,7 +75,7 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
                 detailUserViewModel.status.value = null
                 Snackbar.make(
                     detailUserBinding.root,
-                    "Something wrong get detail user $nameUser",
+                    "Something wrong get detail user",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
