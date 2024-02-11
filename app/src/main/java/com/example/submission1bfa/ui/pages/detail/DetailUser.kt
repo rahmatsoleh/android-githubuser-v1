@@ -66,6 +66,10 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
             nameUser = detailUser.name.toString()
         }
 
+        detailUserViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
         detailUserViewModel.status.observe(this) { status ->
             status?.let {
                 detailUserViewModel.status.value = null
@@ -98,6 +102,24 @@ class DetailUser : AppCompatActivity(), View.OnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(htmlurl))
                 startActivity(browserIntent)
             }
+        }
+    }
+
+    private fun showLoading(load: Boolean) {
+        if (load) {
+            detailUserBinding.progressBar.visibility = View.VISIBLE
+            detailUserBinding.profileGroup.visibility = View.INVISIBLE
+            detailUserBinding.tvNameProfile.visibility = View.INVISIBLE
+            detailUserBinding.tvDescription.visibility = View.INVISIBLE
+            detailUserBinding.tvCompany.visibility = View.INVISIBLE
+            detailUserBinding.tvLocation.visibility = View.INVISIBLE
+        } else {
+            detailUserBinding.progressBar.visibility = View.GONE
+            detailUserBinding.profileGroup.visibility = View.VISIBLE
+            detailUserBinding.tvNameProfile.visibility = View.VISIBLE
+            detailUserBinding.tvDescription.visibility = View.VISIBLE
+            detailUserBinding.tvCompany.visibility = View.VISIBLE
+            detailUserBinding.tvLocation.visibility = View.VISIBLE
         }
     }
 

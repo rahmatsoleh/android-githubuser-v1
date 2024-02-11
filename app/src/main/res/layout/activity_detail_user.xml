@@ -15,6 +15,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/main_layout">
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            app:layout_constraintTop_toTopOf="@id/main_layout"
+            app:layout_constraintBottom_toBottomOf="@id/main_layout"
+            app:layout_constraintStart_toStartOf="@id/main_layout"
+            app:layout_constraintEnd_toEndOf="@id/main_layout"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
         <Button
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
